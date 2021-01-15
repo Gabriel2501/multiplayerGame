@@ -1,1 +1,12 @@
-<p>user-list works!</p>
+<form class="form">
+  <mat-form-field class="full-width">
+    <mat-label>Usuário</mat-label>
+    <input type="text" matInput>
+  </mat-form-field>
+  <button mat-raised-button>Entrar</button>
+</form>
+<mat-selection-list #userList [multiple]="false">
+  <mat-list-option *ngFor="let user of users" [value]="user">
+    {{user}}
+  </mat-list-option>
+</mat-selection-list>

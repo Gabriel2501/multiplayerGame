@@ -6,11 +6,14 @@ import { GameLogComponent } from './components/game-log/game-log.component';
 import { GameComponent } from './components/game/game.component';
 import { GameRoutingModule } from './game-routing.module';
 import { AngularMaterialModule } from './../angular-material/angular-material.module';
+import { MenuComponent } from './menu/menu.component';
+import { AjudaComponent } from './menu/ajuda/ajuda.component';
+
 
 
 
 @NgModule({
-  declarations: [ChatComponent, UserListComponent, GameLogComponent, GameComponent],
+  declarations: [ChatComponent, UserListComponent, GameLogComponent, GameComponent, MenuComponent, AjudaComponent],
   imports: [
     CommonModule,
     GameRoutingModule,
