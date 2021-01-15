@@ -1,1 +1,40 @@
-<p>game works!</p>
+<mat-grid-list cols="6" rowHeight="4:1">
+
+    <!-- Menu Superior -->
+    <mat-grid-tile colspan="6">
+        <mat-toolbar>
+            <!-- Nome do jogo -->
+            <span>Multiplayer Game</span>
+            
+            <!-- Separador que joga para a direita -->
+            <span class="spacer"></span>
+
+            <!-- Botão de ajuda -->
+            <button mat-icon-button>
+                <mat-icon>help_outline</mat-icon>
+            </button>
+        </mat-toolbar>
+    </mat-grid-tile>
+    <mat-divider></mat-divider>
+
+    <!-- Lateral Esquerda  Superior-->
+    <mat-grid-tile rowspan="5" colspan="1">
+        <app-user-list></app-user-list>
+    </mat-grid-tile>
+
+    <!-- Tela principal -->
+    <mat-grid-tile rowspan="10" colspan="4">
+        Jogo vai aqui
+    </mat-grid-tile>
+
+    <!-- Lateral Direita -->
+    <mat-grid-tile rowspan="10" colspan="1">
+        <app-game-log></app-game-log>
+    </mat-grid-tile>
+
+    <!-- Lateral Esquerda  Inferior-->
+    <mat-grid-tile rowspan="5" colspan="1">
+        <app-chat></app-chat>
+    </mat-grid-tile>
+
+</mat-grid-list>

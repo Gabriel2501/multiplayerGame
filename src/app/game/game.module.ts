@@ -5,6 +5,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { GameLogComponent } from './components/game-log/game-log.component';
 import { GameComponent } from './components/game/game.component';
 import { GameRoutingModule } from './game-routing.module';
+import { AngularMaterialModule } from './../angular-material/angular-material.module';
 
 
 
@@ -12,7 +13,8 @@ import { GameRoutingModule } from './game-routing.module';
   declarations: [ChatComponent, UserListComponent, GameLogComponent, GameComponent],
   imports: [
     CommonModule,
-    GameRoutingModule
+    GameRoutingModule,
+    AngularMaterialModule
   ]
 })
 export class GameModule { }
