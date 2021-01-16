@@ -5,6 +5,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -14,14 +18,22 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatGridListModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatListModule
   ],
   exports: [
     MatDividerModule,
     MatGridListModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatListModule
   ]
 })
 export class AngularMaterialModule { }
