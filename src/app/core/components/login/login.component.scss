@@ -1,0 +1,48 @@
+@import "src/app/core/scss/grid.scss";
+
+.container {
+    height: 100%;
+
+    background-color: #0d47a1;
+}
+
+.card {
+    background-color: #fafafa;
+
+    width: 30%;
+    border-radius: 8px;
+    padding: 16px 32px;
+
+    .card-header {
+        .card-header__title {
+            font-size: 1.2rem;
+        }
+
+        .card-header__subtitle {
+            font-size: 0.8rem;
+        }
+    }
+
+    .card-content {
+        padding: 16px 0;
+
+        form {
+            width: 100%;
+
+
+            .mat-form-field{
+                width: 100%;
+            }
+        }
+    }
+
+    .card-actions {
+        button {
+            margin: 0 2px;
+        }
+
+        button:last-of-type {
+            margin-right: 0;
+        }
+    }
+}
