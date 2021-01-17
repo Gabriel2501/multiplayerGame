@@ -21,19 +21,22 @@ export class LoginComponent implements OnInit {
     username: [undefined, [Validators.required]]
   });
 
+  getFormErrorMessage(formName: string): string | void {
+    if (this.form.get(formName)?.getError('required')) return 'O miuner disse que esse campo é importante';
+    else if (this.form.get(formName)?.getError('notAllowed')) return 'O miuner disse que você não pode entrar. :(';
+
+  }
+
 
   onClearForm(): void {
     this.form.reset();
   }
 
   onSubmitForm(): void {
-
-    if (this.form.valid) {
-
-      if (this._authenticationService.userIsValid(this.form.get('username')?.value)) this._router.navigate([''])
-
+    if (this._authenticationService.userIsValid(this.form.get('username')?.value)) {
+      this._router.navigate(['']);
     } else {
-      this.form.setErrors({ usernameNotValid: true })
+      this.form.get('username')?.setErrors({ notAllowed: true });
     }
   }
 
