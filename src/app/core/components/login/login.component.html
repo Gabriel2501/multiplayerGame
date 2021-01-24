@@ -1,11 +1,16 @@
 <div class="row center-vertical-align center-horizontal-align container">
     <div class="column card">
         <div class="column card-header">
-            <span class="card-header__title">TITULO HERE</span>
-            <span class="card-header__subtitle">SUBTITULO HERER</span>
+            <span class="card-header__title">Login</span>
+            <span class="card-header__subtitle">Digite o nome da sala e seu usuário para continuar</span>
         </div>
         <div class="column card-content">
             <form [formGroup]="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Room</mat-label>
+                    <input matInput placeholder="Room" formControlName="room">
+                    <mat-error *ngIf="form.get('room')?.invalid">{{getFormErrorMessage('room')}}</mat-error>
+                </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Username</mat-label>
                     <input matInput placeholder="Username" formControlName="username">

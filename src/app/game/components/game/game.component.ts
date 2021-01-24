@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SocketioService } from './../../services/socketio.service';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _socketService: SocketioService) {
+    
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    
   }
 
 }

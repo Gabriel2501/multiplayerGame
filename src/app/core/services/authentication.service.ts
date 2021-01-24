@@ -1,3 +1,4 @@
+import { LoginComponent } from './../components/login/login.component';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,24 +6,25 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationService {
 
-  private _users = ['unigua', 'tyrone', 'pablo', 'tasha', 'austin'];
   private _userIsAuthenticated: boolean = false;
 
   constructor() { }
 
 
-  userIsValid(username: string): boolean {
-    let user = this._users.find(name => name === username);
-
-    if (user) {
-      this._userIsAuthenticated = true;
-      return true
-    } else {
-      return false;
-    }
+  verifyUser(component: LoginComponent, room: string, username: string): void {
+    fetch("http://localhost:8080/users")
+      .then((data) => data.json())
+      .then(usernames => {
+        console.log(usernames);
+        if (!usernames.includes(username) && username.length <= 20 && username) {
+          this._userIsAuthenticated = true;
+          component.userVerified(true);
+        }
+        component.userVerified(false);
+      });
   }
 
-  userIsAuthenticated():boolean{
-    return this._userIsAuthenticated
+  userIsAuthenticated(): boolean {
+    return this._userIsAuthenticated;
   }
 }
