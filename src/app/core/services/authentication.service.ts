@@ -22,6 +22,7 @@ export class AuthenticationService {
         }
         component.userVerified(false);
       });
+      
   }
 
   userIsAuthenticated(): boolean {

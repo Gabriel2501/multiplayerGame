@@ -1,5 +1,7 @@
-<mat-selection-list #userList [multiple]="false">
-  <mat-list-option *ngFor="let user of users" [value]="user">
+<div *ngIf="users$ | async as users">
+  <mat-selection-list #userList [multiple]="false">
+    <mat-list-option *ngFor="let user of users" [value]="user">
     {{user}}
   </mat-list-option>
-</mat-selection-list>
+  </mat-selection-list>
+</div>

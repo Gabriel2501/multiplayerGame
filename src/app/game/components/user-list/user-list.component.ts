@@ -1,3 +1,4 @@
+import { Subject, Observable } from 'rxjs';
 import { SocketioService } from './../../services/socketio.service';
 import { GameComponent } from './../game/game.component';
 import { Component, OnInit } from '@angular/core';
@@ -8,20 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users: string[] = [];
+  users$: Observable<[]>;
 
   constructor(private _socketioService: SocketioService) {
-    setInterval(() => {
-      this.updateUsers();
-    }, 500);
-    
+    this.users$ = new Observable();
   }
 
   ngOnInit(): void {
-
-  }
-
-  updateUsers() {
-    this.users = this._socketioService.getUsers();
+    this.users$ = this._socketioService.getUsers();
   }
 }
