@@ -1,16 +1,19 @@
 import { SocketioService } from './../../../game/services/socketio.service';
 import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  private _loginSubscription!: Subscription;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -38,7 +41,7 @@ export class LoginComponent implements OnInit {
     let room = this.form.get('room')?.value;
     let username = this.form.get('username')?.value;
 
-    this._authenticationService.verifyUser(this, room, username);
+    this._loginSubscription = this._authenticationService.verifyUser(this, room, username).subscribe();
   }
 
   userVerified(isValid: boolean) {
@@ -54,6 +57,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnDestroy(): void {
+    this._loginSubscription.unsubscribe();
   }
 
 }

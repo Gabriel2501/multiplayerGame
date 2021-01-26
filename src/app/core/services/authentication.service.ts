@@ -15,36 +15,21 @@ export class AuthenticationService {
     private _httpClient: HttpClient
   ) { }
 
-
-  // verifyUser(component: LoginComponent, room: string, username: string): void {
-  //   fetch("http://localhost:8080/users")
-  //     .then((data) => data.json())
-  //     .then(usernames => {
-  //       console.log(usernames);
-  //       if (!usernames.includes(username) && username.length <= 20 && username) {
-  //         this._userIsAuthenticated = true;
-  //         component.userVerified(true);
-  //       }
-  //       component.userVerified(false);
-  //     });
-
-  // }
-
   verifyUser(component: LoginComponent, room: string, username: string): Observable<any> {
     let httpParams: HttpParams = new HttpParams();
     httpParams = httpParams.set("room", room);
 
     return this._httpClient.get<Observable<any>>("http://localhost:8080/users", { params: httpParams }).pipe(
       tap((data: any) => {
-        if (!data.includes(username) && username.length <= 20 && username) {
+        console.log(data);
+        if (!data.find(((user: any) => user.name === username))) {
           this._userIsAuthenticated = true;
           //async validators
 
         }
         component.userVerified(this._userIsAuthenticated);
-
       })
-    )
+    );
   }
 
   userIsAuthenticated(): boolean {

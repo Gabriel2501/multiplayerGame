@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users$: Observable<[]>;
+  users$!: Observable<any[]>;
 
   constructor(private _socketioService: SocketioService) {
-    this.users$ = new Observable();
+
   }
 
   ngOnInit(): void {
