@@ -1,1 +1,13 @@
-<p>chat works!</p>
+<div>
+    <div *ngIf="messages$ | async as messages">
+        <mat-list #chat>
+            <mat-list-item *ngFor="let message of messages">
+                {{message.user}}: {{message.text}}
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <mat-form-field>
+        <mat-label>Enviar Mensagem</mat-label>
+        <input id="chatInput" matInput type="text" (keydown.enter)="enviarMensagem($event.target)">
+    </mat-form-field>
+</div>
