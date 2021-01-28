@@ -1,17 +1,21 @@
 <div class="row center-vertical-align center-horizontal-align container">
     <div class="column card">
         <div class="column card-header">
+            <!-- Mudar texto para arquivo de constantes de idioma -->
             <span class="card-header__title">Login</span>
+            <!-- Mudar texto para arquivo de constantes de idioma -->
             <span class="card-header__subtitle">Digite o nome da sala e seu usuário para continuar</span>
         </div>
         <div class="column card-content">
             <form [formGroup]="form">
                 <mat-form-field appearance="outline">
+                    <!-- Mudar texto para arquivo de constantes de idioma -->
                     <mat-label>Room</mat-label>
                     <input matInput placeholder="Room" formControlName="room">
                     <mat-error *ngIf="form.get('room')?.invalid">{{getFormErrorMessage('room')}}</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
+                    <!-- Mudar texto para arquivo de constantes de idioma -->
                     <mat-label>Username</mat-label>
                     <input matInput placeholder="Username" formControlName="username">
                     <mat-error *ngIf="form.get('username')?.invalid">{{getFormErrorMessage('username')}}</mat-error>
@@ -20,7 +24,9 @@
 
         </div>
         <div class="row flex__end-horizontal-align card-actions">
+            <!-- Mudar texto para arquivo de constantes de idioma -->
             <button mat-stroked-button (click)="onClearForm()">Cancelar</button>
+            <!-- Mudar texto para arquivo de constantes de idioma -->
             <button mat-stroked-button (click)="onSubmitForm()" [disabled]="form.invalid">Entrar</button>
         </div>
     </div>
