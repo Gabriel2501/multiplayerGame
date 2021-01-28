@@ -32,6 +32,11 @@ export class SocketioService {
 
     this.socket.on('message', (data: any) => {
       this.messageList.push({ user: data.user, text: data.text });
+
+      //Quantidade de mensagens mostradas, mudar para arquivo de constantes
+      if (this.messageList.length > 4) {
+        this.messageList.shift();
+      }
       this.messages$.next(this.messageList);
     });
   }
