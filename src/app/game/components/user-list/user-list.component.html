@@ -1,7 +1,12 @@
 <div *ngIf="users$ | async as users">
-  <mat-selection-list #userList [multiple]="false">
-    <mat-list-option *ngFor="let user of users" [value]="user">
+  <mat-list #userList>
+    <mat-list-item *ngFor="let user of users">
       {{user?.name}}
-    </mat-list-option>
-  </mat-selection-list>
+      <div *ngIf="isAdmin">
+        <button mat-button (click)="deleteUser(user?.name)">
+          X
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
 </div>

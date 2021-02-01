@@ -21,7 +21,6 @@ export class AuthenticationService {
 
     return this._httpClient.get<Observable<any>>("http://localhost:8080/users", { params: httpParams }).pipe(
       tap((data: any) => {
-        console.log(data);
         if (!data.find(((user: any) => user.name === username))) {
           this._userIsAuthenticated = true;
           //async validators

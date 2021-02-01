@@ -8,7 +8,8 @@ import { io } from 'socket.io-client';
 export class SocketioService {
 
   private socket: any;
-  private users$: Subject<[]>;
+  private users$: Subject<any[]>;
+  private isAdminUser$: Subject<boolean>;
   private messages$: Subject<any[]>;
   private messageList: any[];
   private _room!: string;
@@ -16,6 +17,7 @@ export class SocketioService {
 
   constructor() {
     this.users$ = new Subject();
+    this.isAdminUser$ = new Subject();
     this.messages$ = new Subject();
     this.messageList = [];
   }
@@ -28,6 +30,7 @@ export class SocketioService {
 
     this.socket.on('update_users', (data: any) => {
       this.users$.next(data.users);
+      this.isAdminUser$.next(data.admin.name === this._myUsername);
     });
 
     this.socket.on('message', (data: any) => {
@@ -39,16 +42,26 @@ export class SocketioService {
       }
       this.messages$.next(this.messageList);
     });
+
+    this.socket.on('force_disconnect', (username: string) => {
+      if (this._myUsername === username) {
+        window.location.reload();
+      }
+    });
   }
 
   emitEvent(event: string, ...args: any): void {
     args[0].room = this._room;
-    args[0].username = this._myUsername;
+    args[0].emissor = this._myUsername;
     this.socket.emit(event, ...args);
   }
 
   getUsers() {
     return this.users$;
+  }
+
+  isAdmin() {
+    return this.isAdminUser$;
   }
 
   getMessages() {

@@ -1,1 +1,7 @@
 <p>game-log works!</p>
+
+<div *ngIf="isAdmin">
+    <button mat-button color="primary" (click)="startGame()">
+        Iniciar
+    </button>
+</div>
