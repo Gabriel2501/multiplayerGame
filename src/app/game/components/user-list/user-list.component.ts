@@ -9,13 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users$: Observable<[]>;
+  users$!: Observable<any[]>;
+  adminView$!: Observable<boolean>;
+  isAdmin!: boolean;
 
   constructor(private _socketioService: SocketioService) {
-    this.users$ = new Observable();
+    this.isAdmin = false;
   }
 
   ngOnInit(): void {
     this.users$ = this._socketioService.getUsers();
+
+    this.adminView$ = this._socketioService.isAdmin();
+    this.adminView$.subscribe((value) => this.isAdmin = value);
+  }
+
+  deleteUser(username: string): void {
+    this._socketioService.emitEvent("delete_user", { username: username });
   }
 }
