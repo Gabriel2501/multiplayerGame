@@ -1,0 +1,54 @@
+$background-colors: (
+    $elevation-00dp: #121212,
+    $elevation-01dp: #1e1e1e,
+    $elevation-02dp: #222222,
+    $elevation-03dp: #242424,
+    $elevation-04dp: #272727,
+    $elevation-06dp: #2c2c2c,
+    $elevation-08dp: #2e2e2e,
+    $elevation-12dp: #333333,
+    $elevation-16dp: #343434,
+    $elevation-24dp: #383838,
+);
+
+$background-border-colors: (
+    $border-1: #616161,
+    //evitar usar quando o background-color estiver entre 08dp e 24dp
+    $border-2: #424242,
+    //evitar usar quando o background-color estiver entre 12dp e 24dp
+);
+
+$element-background-colors: (
+    $none: unset,
+    $disabled: unset,
+    $primary: unset // cor com transparência
+    $secondary: unset //cor com transparencia
+    $warn: unset // cor com transparência,,,,
+);
+
+$element-border-colors: (
+    $none: #424242,
+    $disabled: unset,
+    $primary: unset,
+    $secondary: unset,
+    $warn: unset,
+);
+
+$font-colors: (
+    $disabled: unset,
+    $primary: #fafafa,
+    $secondary: unset,
+    $warn: unset,
+);
+
+@mixin setElementColor($background-color: false, $font-color: false, $border-color: false) {
+    @if $background-color {
+        background-color: $background-color;
+    }
+    @if $font-color {
+        color: $font-color;
+    }
+    @if $border-color {
+        border-color: $border-color;
+    }
+}
