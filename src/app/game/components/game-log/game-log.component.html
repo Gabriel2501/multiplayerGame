@@ -1,7 +1,17 @@
-<p>game-log works!</p>
+<div *ngIf="log$ | async as logList">
+    <mat-list #logList>
+        <mat-list-item *ngFor="let log of logList">
+            {{log}}
+        </mat-list-item>
+    </mat-list>
+</div>
 
 <div *ngIf="isAdmin">
     <button mat-button color="primary" (click)="startGame()">
         Iniciar
     </button>
 </div>
+
+<button mat-button color="primary" (click)="sair()">
+    Sair
+</button>

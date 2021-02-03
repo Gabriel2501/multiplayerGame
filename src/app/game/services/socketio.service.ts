@@ -10,8 +10,13 @@ export class SocketioService {
   private socket: any;
   private users$: Subject<any[]>;
   private isAdminUser$: Subject<boolean>;
+
   private messages$: Subject<any[]>;
   private messageList: any[];
+
+  private log$: Subject<any[]>;
+  private logList: any[];
+
   private _room!: string;
   private _myUsername!: string;
 
@@ -19,7 +24,10 @@ export class SocketioService {
     this.users$ = new Subject();
     this.isAdminUser$ = new Subject();
     this.messages$ = new Subject();
+    this.log$ = new Subject();
+
     this.messageList = [];
+    this.logList = [];
   }
 
   setupSocketConnection(room: string, username: string) {
@@ -41,6 +49,12 @@ export class SocketioService {
         this.messageList.shift();
       }
       this.messages$.next(this.messageList);
+    });
+
+    this.socket.on('log_event', (data: any) => {
+      this.logList.push(data?.logText);
+
+      this.log$.next(this.logList);
     });
 
     this.socket.on('force_disconnect', (username: string) => {
@@ -66,5 +80,9 @@ export class SocketioService {
 
   getMessages() {
     return this.messages$;
+  }
+
+  getLog() {
+    return this.log$;
   }
 }
