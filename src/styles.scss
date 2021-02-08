@@ -4,7 +4,7 @@
 $dark-primary: mat-palette($mat-blue-grey);
 $dark-accent: mat-palette($mat-amber, A200, A100, A400);
 $dark-warn: mat-palette($mat-deep-orange);
-$dark-theme: mat-dark-theme(
+$dark-theme: mat-light-theme(
     (
         color: (
             primary: $dark-primary,

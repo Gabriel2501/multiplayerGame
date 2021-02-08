@@ -10,12 +10,22 @@ import { AjudaComponent } from './ajuda/ajuda.component';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  idiomas: any[];
+
+  constructor(public dialog: MatDialog) {
+    this.idiomas = ["BR", "EN", "ES"];
+  }
 
   ngOnInit(): void {
   }
 
   exibirAjuda() {
     this.dialog.open(AjudaComponent, {});
+  }
+
+  selecionarIdioma(idioma: string): void {
+    // Preparar arquivo de Settings, talvez?
+    // A partir daqui teria que alterar o idioma
+    console.log(idioma);
   }
 }
