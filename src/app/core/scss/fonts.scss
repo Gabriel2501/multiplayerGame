@@ -1,0 +1,22 @@
+@use "sass:map";
+
+$font-families: (
+    "regular": "Roboto Condensed Regular",
+    "light": "Roboto Condensed Light",
+    "bold": "Roboto Condensed Bold",
+);
+
+@mixin setFont($family: false, $size: false, $color: false, $line-height: false) {
+    @if $family {
+        font-family: map.get($font-families, $family);
+    }
+    @if $size {
+        font-size: $size;
+    }
+    @if $color {
+        color: $color;
+    }
+    @if $line-height {
+        line-height: $line-height;
+    }
+}
