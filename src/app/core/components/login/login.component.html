@@ -1,33 +1,33 @@
-<div class="row center-vertical-align center-horizontal-align container">
-    <div class="column card">
-        <div class="column card-header">
-            <!-- Mudar texto para arquivo de constantes de idioma -->
-            <span class="card-header__title">Login</span>
-            <!-- Mudar texto para arquivo de constantes de idioma -->
-            <span class="card-header__subtitle">Digite o nome da sala e seu usuário para continuar</span>
+<div class="column center-horizontal-align center-vertical-align container">
+    <div class="column card login-card">
+        <div class="column center-vertical-align login-card-header">
+            <span class="login-card-header__title"> GOOFY GRAPE GAME</span>
+            <span class="login-card-header__subtitle"> My car is very fast VRUUUUMMMM </span>
         </div>
-        <div class="column card-content">
-            <form [formGroup]="form">
-                <mat-form-field appearance="outline">
-                    <!-- Mudar texto para arquivo de constantes de idioma -->
-                    <mat-label>Room</mat-label>
-                    <input matInput placeholder="Room" formControlName="room">
-                    <mat-error *ngIf="form.get('room')?.invalid">{{getFormErrorMessage('room')}}</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <!-- Mudar texto para arquivo de constantes de idioma -->
-                    <mat-label>Username</mat-label>
-                    <input matInput placeholder="Username" formControlName="username">
-                    <mat-error *ngIf="form.get('username')?.invalid">{{getFormErrorMessage('username')}}</mat-error>
-                </mat-form-field>
-            </form>
+        <div class="row login-card-content" *ngIf="getFormControlValue('step') === 0">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
+                <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('room')">
 
+                    <input type="text" placeholder="Room" formControlName="room">
+                </div>
+                <button class="rectangular-button login-card-content__button"
+                    [disabled]="getFormControlNameIsValid('room')" matRipple>Próximo</button>
+            </form>
         </div>
-        <div class="row flex__end-horizontal-align card-actions">
-            <!-- Mudar texto para arquivo de constantes de idioma -->
-            <button mat-stroked-button (click)="onClearForm()">Cancelar</button>
-            <!-- Mudar texto para arquivo de constantes de idioma -->
-            <button mat-stroked-button (click)="onSubmitForm()" [disabled]="form.invalid">Entrar</button>
+        <div class="row login-card-content" *ngIf="getFormControlValue('step') === 1 && !isLoading">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
+                <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
+                    <input type="text" placeholder="Username" formControlName="username">
+                </div>
+                <span *ngIf="form.get('username')?.invalid"> {{getFormErrorMessage("username")}}</span>
+
+                <button class="rectangular-button login-card-content__button"
+                    [disabled]="getFormControlNameIsValid('username')" matRipple>Próximo</button>
+
+            </form>
+        </div>
+        <div class="row login-card-content" *ngIf="isLoading">
+            loading spinner here
         </div>
     </div>
 </div>

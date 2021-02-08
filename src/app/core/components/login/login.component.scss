@@ -1,48 +1,163 @@
+@use "sass:map";
+
 @import "src/app/core/scss/grid.scss";
+@import "src/app/core/scss/fonts.scss";
+@import "src/app/core/scss/colors.scss";
 
 .container {
     height: 100%;
-
-    background-color: #0d47a1;
+    background-color: map.get($background-colors, "elevation-00dp");
 }
 
-.card {
-    background-color: #fafafa;
+.login-card {
+    @include setElementColor(map.get($background-colors, "elevation-02dp"));
+    box-sizing: border-box;
 
-    width: 30%;
-    border-radius: 8px;
-    padding: 16px 32px;
-
-    .card-header {
-        .card-header__title {
-            font-size: 1.2rem;
+    .login-card-header {
+        .login-card-header__title {
+            @include setFont($family: "bold", $color: $primary-color);
         }
-
-        .card-header__subtitle {
-            font-size: 0.8rem;
+        .login-card-header__subtitle {
+            @include setFont($family: "regular", $color: $secondary-color);
         }
     }
 
-    .card-content {
-        padding: 16px 0;
+    .login-card-content {
+        .login-card-content__input {
+            box-sizing: border-box;
+            border: 2px solid;
+            border-radius: 8px;
 
-        form {
-            width: 100%;
+            cursor: text;
 
+            @include setElementColor(
+                $background-color: map.get($background-colors, "elevation-01dp"),
+                $border-color: map.get($background-colors, "elevation-01dp")
+            );
 
-            .mat-form-field{
-                width: 100%;
+            input {
+                border: unset;
+                @include setElementColor($background-color: unset, $border-color: unset);
+                @include setFont($family: "regular", $color: $default-color);
+            }
+
+            input::placeholder {
+                padding-left: 4px;
+                @include setFont($family: "regular", $color: $disabled-color);
+            }
+
+            input:focus {
+                outline: none;
+            }
+        }
+
+        .login-card-content__input-invalid {
+            @include setElementColor($border-color: $warn-color);
+            transition: 200ms ease-in-out;
+
+            input::placeholder {
+                @include setElementColor($border-color: $warn-light-color);
+            }
+        }
+
+        .login-card-content__button {
+            border-radius: 8px;
+            cursor: pointer;
+
+            @include setElementColor($background-color: unset, $border-color: $secondary-color);
+            @include setFont($family: "light", $color: $secondary-color);
+        }
+
+        .login-card-content__button:hover:disabled {
+            cursor: default;
+            @include setFont($family: "light");
+        }
+
+        .login-card-content__button:focus{
+            outline: none;
+        }
+
+        .login-card-content__button:disabled {
+            @include setElementColor($background-color: unset, $border-color:#616161);
+            @include setFont($family: "light", $color: #616161);
+
+        }
+    }
+
+    .login-card-content,
+    form,
+    .login-card-content__input,
+    .login-card-content__button,
+    input {
+        width: 100%;
+    }
+}
+
+@include grid("large-handset") {
+    .container {
+        padding: 0;
+    }
+
+    .login-card {
+        width: 100%;
+        border-radius: 0;
+
+        .login-card-header {
+            .login-card-header__title {
+                @include setFont($size: 2.04rem);
+                padding: 0 0 4px 0;
+            }
+            .login-card-header__subtitle {
+                @include setFont($size: 1rem);
+            }
+        }
+
+        .login-card-content {
+            padding-top: 24px;
+
+            .login-card-content__input {
+                padding: 8px 16px;
+            }
+
+            .login-card-content__button {
+                margin-top: 16px;
             }
         }
     }
+}
 
-    .card-actions {
-        button {
-            margin: 0 2px;
+@include grid("desktop") {
+    .login-card {
+        width: 45%;
+
+        .login-card-header {
+            .login-card-header__title {
+                @include setFont($size: 2.04rem);
+                padding: 0 0 4px 0;
+            }
+            .login-card-header__subtitle {
+                @include setFont($size: 1.3rem);
+            }
         }
 
-        button:last-of-type {
-            margin-right: 0;
+        .login-card-content {
+            padding-top: 24px;
+
+            .login-card-content__input {
+                padding: 8px 16px;
+
+                input {
+                    @include setFont($size: 1.1rem);
+                }
+            }
+
+            .login-card-content__button {
+                @include setFont($size: 1rem);
+
+                width: auto;
+                margin: 24px 0 0 0;
+                padding: 6px 16px;
+            }
         }
     }
 }
