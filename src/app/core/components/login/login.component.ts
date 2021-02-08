@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _title: Title,
-    private _snackBar: MatSnackBar,
+    // private _snackBar: MatSnackBar,
     private _authenticationService: AuthenticationService,
     private _socketioService: SocketioService
   ) { }
