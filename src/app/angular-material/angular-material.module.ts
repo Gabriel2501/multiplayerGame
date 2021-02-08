@@ -1,14 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatListModule} from '@angular/material/list';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -22,7 +14,8 @@ import {MatListModule} from '@angular/material/list';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatRippleModule,
   ],
   exports: [
     MatDividerModule,
@@ -33,7 +26,7 @@ import {MatListModule} from '@angular/material/list';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatListModule
+    MatRippleModule,
   ]
 })
 export class AngularMaterialModule { }
