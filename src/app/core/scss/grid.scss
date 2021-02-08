@@ -36,3 +36,55 @@
 .flex__end-vertical-align {
     align-items: flex-end;
 }
+
+@mixin grid($range) {
+    $small-handset: 359px;
+    $medium-handset: 399px;
+    $large-handset: 599px;
+    $small-tablet: 719px;
+    $medium-tablet: 839px;
+    $large-tablet: 1023px;
+    $desktop: 1439px;
+    $large-desktop: 1440px;
+
+    @if $range == "small-handset" {
+        @media (max-width: #{$small-handset + 1}) {
+            @content;
+        }
+    }
+    @if $range == "medium-handset" {
+        @media (max-width: #{$large-handset}) {
+            @content;
+        }
+    }
+    @if $range == "large-handset" {
+        @media (max-width: #{$large-handset}) {
+            @content;
+        }
+    }
+    @if $range == "tablet" {
+        @media (min-width: #{$large-handset + 1}) {
+            @content;
+        }
+    }
+    @if $range == "medium-tablet" {
+        @media (min-width: #{$medium-tablet + 1}) {
+            @content;
+        }
+    }
+    @if $range == "large-tablet" {
+        @media (min-width: #{$large-tablet + 1}) {
+            @content;
+        }
+    }
+    @if $range == "desktop" {
+        @media (min-width: #{$desktop + 1}) {
+            @content;
+        }
+    }
+    @if $range == "large-desktop" {
+        @media (min-width: #{$large-desktop + 1}) {
+            @content;
+        }
+    }
+}
