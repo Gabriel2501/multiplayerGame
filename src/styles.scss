@@ -15,6 +15,24 @@ $dark-theme: mat-dark-theme(
 );
 @include angular-material-color($dark-theme);
 
+@font-face {
+    font-family: "Roboto Condensed Regular";
+    src: url("/assets/fonts/RobotoCondensed-Regular.ttf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Condensed Light";
+    src: url("/assets/fonts/RobotoCondensed-Light.ttf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Condensed Bold";
+    src: url("/assets/fonts/RobotoCondensed-Bold.ttf") format("opentype");
+    font-display: swap;
+}
+
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
