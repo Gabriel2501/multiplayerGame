@@ -66,7 +66,7 @@ export class SocketioService {
 
   emitEvent(event: string, ...args: any): void {
     args[0].room = this._room;
-    args[0].emissor = this._myUsername;
+    args[0].emitter = this._myUsername;
     this.socket.emit(event, ...args);
   }
 
