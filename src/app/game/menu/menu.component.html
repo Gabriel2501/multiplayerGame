@@ -1,26 +1,28 @@
 <mat-toolbar>
-    <!-- Nome do jogo -->
-    <span>Multiplayer Game</span>
+  <!-- Nome do jogo -->
+  <span>Multiplayer Game</span>
 
-    <!-- Separador que joga para a direita -->
-    <span class="spacer"></span>
+  <!-- Separador que joga para a direita -->
+  <span class="spacer"></span>
 
-    <!-- Botão de seleção de idioma -->
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>translate</mat-icon>
+  <!-- {{JSON[selectedLanguage][chave]}} -->
+
+  <!-- Botão de seleção de idioma -->
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>translate</mat-icon>
+  </button>
+
+  <!-- Idiomas disponiveis -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let language of languages" (click)="selectLanguage(language)">
+      <!-- Substituir icone por bandeira, talvez? Ou só remover -->
+      <mat-icon>translate</mat-icon>
+      <span>{{language}}</span>
     </button>
+  </mat-menu>
 
-    <!-- Idiomas disponiveis -->
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let idioma of idiomas" (click)="selecionarIdioma(idioma)">
-            <!-- Substituir icone por bandeira, talvez? Ou só remover -->
-            <mat-icon>translate</mat-icon>
-            <span>{{idioma}}</span>
-        </button>
-    </mat-menu>
-
-    <!-- Botão de ajuda -->
-    <button mat-icon-button (click)="exibirAjuda()">
-        <mat-icon>help_outline</mat-icon>
-    </button>
+  <!-- Botão de ajuda -->
+  <button mat-icon-button (click)="exibirAjuda()">
+    <mat-icon>help_outline</mat-icon>
+  </button>
 </mat-toolbar>
