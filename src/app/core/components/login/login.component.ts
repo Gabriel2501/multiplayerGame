@@ -1,3 +1,4 @@
+import { LanguageService } from 'src/app/core/services/language.service';
 import { SocketioService } from './../../../game/services/socketio.service';
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -18,13 +19,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   private _loginSubscription!: Subscription;
   private _userVeryfiedSubscription!: Subscription;
 
+  languages!: string[];
+  selectedLanguage!: string;
+  languageNotifierSubscription!: Subscription;
+  selectedDictionary!: { [key: string]: any };
+
   constructor(
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _title: Title,
     // private _snackBar: MatSnackBar,
     private _authenticationService: AuthenticationService,
-    private _socketioService: SocketioService
+    private _socketioService: SocketioService,
+    public languageService: LanguageService
   ) { }
 
   form = this._formBuilder.group({
@@ -93,7 +100,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   }
 
+  onSelectLanguage(language: string): void {
+    this.languageService.updateLanguage(language)
+  }
+
   ngOnInit(): void {
+    this.languageNotifierSubscription = this.languageService.getLanguageNotifier().subscribe(() => {
+      this.selectedLanguage = this.languageService.getSelectedLanguage();
+      this.selectedDictionary = this.languageService.getDictionary("login");
+    });
+    this.languages = this.languageService.getLanguages();
+
     this._title.setTitle("Goofy Grape Game | Login");
     this.form.get("step")?.disable();
 
@@ -102,6 +119,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._loginSubscription.unsubscribe();
+    this._loginSubscription.unsubscribe();
+    this.languageNotifierSubscription.unsubscribe();
   }
 
 }
