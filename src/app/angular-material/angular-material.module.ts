@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatListModule,
     MatRippleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatDividerModule,
@@ -39,7 +41,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatListModule,
     MatRippleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AngularMaterialModule { }
