@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   getFormControlNameIsValid(formControlName: string): string {
     let formControl = this.form.get(formControlName);
-    return formControl?.valid ? "" : "login-card-content__input-invalid";
+    return formControl?.invalid && formControl?.dirty ? "login-card-content__input-invalid" : "";
   }
 
   getFormErrorMessage(formName: string): string | void {
@@ -76,10 +76,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       case 0:
         this.form.get("room")?.valid ? this._setStepValue() : undefined;
         break;
+
       case 1:
         if (this.form.valid) {
           this.isLoading = true;
-
           this._userVeryfiedSubscription = this._authenticationService.verifyUser(this.form.value).subscribe((value: boolean) => {
             if (value) {
               this._socketioService.setupSocketConnection(this.form.get("room")?.value, this.form.get("username")?.value);
@@ -93,6 +93,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           });
         }
         break;
+
       default:
         break;
     }
@@ -113,7 +114,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._title.setTitle("Multiplayer Game - Login");
     this.form.get("step")?.disable();
 
-    this.form.get("username")?.statusChanges.subscribe(v => console.log(v))
   }
 
   ngOnDestroy(): void {
