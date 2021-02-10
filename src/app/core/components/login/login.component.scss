@@ -66,11 +66,15 @@
         }
 
         .login-card-content__button {
-            border-radius: 8px;
             cursor: pointer;
 
-            @include setElementColor($background-color: unset, $border-color: $secondary-color);
-            @include setFont($family: "light", $color: $secondary-color);
+            @include setElementColor($background-color: unset);
+            @include setFont($family: "regular", $color: $primary-color);
+        }
+
+        .login-card-content__button:hover {
+            @include setElementColor($background-color: map.get($background-colors, "elevation-01dp"));
+            transition: 500ms ease-in-out;
         }
 
         .login-card-content__button:hover:disabled {
@@ -78,25 +82,35 @@
             @include setFont($family: "light");
         }
 
-        .login-card-content__button:focus{
+        .login-card-content__button:focus {
             outline: none;
         }
 
         .login-card-content__button:disabled {
-            @include setElementColor($background-color: unset, $border-color:#616161);
+            @include setElementColor($background-color: unset, $border-color: #616161);
             @include setFont($family: "light", $color: #616161);
-
         }
     }
 
+    .login-card-content__loading {
+        padding-top: 0 !important;
+    }
+
     .login-card-content,
-    form,
     .login-card-content__input,
     .login-card-content__button,
     .login-card-content-input__wrapper,
     form,
     input {
         width: 100%;
+    }
+}
+
+.loading-card {
+    .loading-card-content {
+        span {
+            @include setFont($family: "bold", $color: $default-color);
+        }
     }
 }
 
@@ -128,6 +142,19 @@
 
             .login-card-content__button {
                 margin-top: 16px;
+            }
+        }
+    }
+
+    .loading-card,
+    .loading-card-content {
+        width: 100%;
+    }
+
+    .loading-card {
+        .loading-card-content {
+            span {
+                @include setFont($size: 1.5rem);
             }
         }
     }
@@ -163,12 +190,31 @@
                 padding-top: 12px;
                 padding-left: 8px;
             }
+
+            .login-card-content-input__wrapper {
+                // height: 80px;
+            }
+
             .login-card-content__button {
-                @include setFont($size: 1rem);
+                @include setFont($size: 1.2rem);
 
                 width: auto;
                 margin: 24px 0 0 0;
-                padding: 6px 16px;
+                padding: 8px 24px;
+            }
+        }
+    }
+
+    .loading-card,
+    .loading-card-content {
+        width: 100%;
+    }
+
+    .loading-card {
+        .loading-card-content {
+            span {
+                @include setFont($size: 1.2rem);
+                padding-top: 16px;
             }
         }
     }
