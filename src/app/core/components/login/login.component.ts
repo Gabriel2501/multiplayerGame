@@ -16,7 +16,6 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  private _loginSubscription!: Subscription;
   private _userVeryfiedSubscription!: Subscription;
 
   languages!: string[];
@@ -111,15 +110,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
     this.languages = this.languageService.getLanguages();
 
-    this._title.setTitle("Goofy Grape Game | Login");
+    this._title.setTitle("Multiplayer Game - Login");
     this.form.get("step")?.disable();
 
     this.form.get("username")?.statusChanges.subscribe(v => console.log(v))
   }
 
   ngOnDestroy(): void {
-    this._loginSubscription.unsubscribe();
-    this._loginSubscription.unsubscribe();
     this.languageNotifierSubscription.unsubscribe();
   }
 

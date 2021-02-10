@@ -19,8 +19,10 @@ export class LanguageService{
     this._languagesDictionary = {
       "BR": {
         "login": {
+          Title: "Título",
           Room: "Sala",
-          Username: "Nome de usuario",
+          Next: "Próximo",
+          Username: "Nome de usuário",
           LoginTip: "Digite o nome da sala e seu usuário para continuar",
           LogIn: "Entrar",
           Cancel: "Cancelar"
@@ -28,7 +30,9 @@ export class LanguageService{
       },
       "EN": {
         "login": {
+          Title: "Title",
           Room: "Room",
+          Next: "Next",
           Username: "Username",
           LoginTip: "Enter the room and user name to hop in",
           LogIn: "LogIn",
@@ -37,7 +41,9 @@ export class LanguageService{
       },
       "ES": {
         "login": {
+          Title: "Titulo",
           Room: "Sala",
+          Next: "Próximo",
           Username: "Nombre",
           LoginTip: "Escriba la sala y el nombre de usuario para ingresar",
           LogIn: "Iniciar",

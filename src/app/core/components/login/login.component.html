@@ -1,28 +1,44 @@
 <div class="column center-horizontal-align center-vertical-align container">
+
+    <!-- Botão para troca de idioma -->
+    <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>translate</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let language of languages" (click)="onSelectLanguage(language)">
+                <!-- Substituir icone por bandeira, talvez? Ou só remover -->
+                <mat-icon>translate</mat-icon>
+                <span>{{language}}</span>
+            </button>
+        </mat-menu>
+    </div>
+
+    <!-- Início do card de login -->
     <div class="column card login-card">
         <div class="column center-vertical-align login-card-header">
-            <span class="login-card-header__title"> GOOFY GRAPE GAME</span>
-            <span class="login-card-header__subtitle"> My car is very fast VRUUUUMMMM </span>
+            <span class="login-card-header__title"> {{selectedDictionary['Title']}}</span>
+            <span class="login-card-header__subtitle"> {{selectedDictionary['LoginTip']}} </span>
         </div>
         <div class="row login-card-content" *ngIf="getFormControlValue('step') === 0">
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
                 <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('room')">
 
-                    <input type="text" placeholder="Room" formControlName="room">
+                    <input type="text" [placeholder]="selectedDictionary['Room']" formControlName="room">
                 </div>
                 <button class="rectangular-button login-card-content__button"
-                    [disabled]="getFormControlNameIsValid('room')" matRipple>Próximo</button>
+                    [disabled]="getFormControlNameIsValid('room')" matRipple>{{selectedDictionary['Next']}}</button>
             </form>
         </div>
         <div class="row login-card-content" *ngIf="getFormControlValue('step') === 1 && !isLoading">
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
                 <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
-                    <input type="text" placeholder="Username" formControlName="username">
+                    <input type="text" [placeholder]="selectedDictionary['Username']" formControlName="username">
                 </div>
                 <span *ngIf="form.get('username')?.invalid"> {{getFormErrorMessage("username")}}</span>
 
                 <button class="rectangular-button login-card-content__button"
-                    [disabled]="getFormControlNameIsValid('username')" matRipple>Próximo</button>
+                    [disabled]="getFormControlNameIsValid('username')" matRipple>{{selectedDictionary['Next']}}</button>
 
             </form>
         </div>
