@@ -18,9 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private _userVeryfiedSubscription!: Subscription;
 
-  languages!: string[];
-  selectedLanguage!: string;
-  languageNotifierSubscription!: Subscription;
+  private _languageNotifierSubscription!: Subscription;
   selectedDictionary!: { [key: string]: any };
 
   constructor(
@@ -97,7 +95,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       default:
         break;
     }
-
   }
 
   onSelectLanguage(language: string): void {
@@ -105,19 +102,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.languageNotifierSubscription = this.languageService.getLanguageNotifier().subscribe(() => {
-      this.selectedLanguage = this.languageService.getSelectedLanguage();
+    this._languageNotifierSubscription = this.languageService.getLanguageNotifier().subscribe(() => {
       this.selectedDictionary = this.languageService.getDictionary("login");
     });
-    this.languages = this.languageService.getLanguages();
 
     this._title.setTitle("Multiplayer Game - Login");
     this.form.get("step")?.disable();
-
   }
 
   ngOnDestroy(): void {
-    this.languageNotifierSubscription.unsubscribe();
+    this._languageNotifierSubscription.unsubscribe();
     this._userVeryfiedSubscription.unsubscribe();
   }
 
