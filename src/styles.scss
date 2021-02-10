@@ -47,9 +47,10 @@ body {
 }
 
 .rectangular-button {
-    border-radius: 8px;
-    border-width: 2px;
-    border-style: solid;
+    border-radius: 6px;
+    border-style: none
+    // border-width: 2px;
+    // border-style: solid;
 }
 
 @import "src/app/core/scss/grid.scss";
