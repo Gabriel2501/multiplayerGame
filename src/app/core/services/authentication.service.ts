@@ -1,7 +1,6 @@
-import { LoginComponent } from './../components/login/login.component';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -22,13 +21,12 @@ export class AuthenticationService {
 
     return this._httpClient.get<Observable<any>>(`${environment.SOCKET_ENDPOINT}/users/`, { params: httpParams }).pipe(
       map((data: any) => {
-
-        console.log()
         if (!data.find(((user: any) => user.name === obj?.username))) {
           this._userIsAuthenticated = true;
           return true;
         } else return false;
       }),
+      delay(2000)
     );
   }
 
