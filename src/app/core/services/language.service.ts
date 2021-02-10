@@ -1,10 +1,11 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { languagesDictionary } from "src/assets/languages/languageBarrel"
 
 @Injectable({
   providedIn: 'root'
 })
-export class LanguageService{
+export class LanguageService {
 
   private _languages!: string[];
   private _selectedLanguage!: string;
@@ -16,41 +17,7 @@ export class LanguageService{
     this._languages = ["BR", "EN", "ES"];
     this._selectedLanguage = "EN";
 
-    this._languagesDictionary = {
-      "BR": {
-        "login": {
-          Title: "Título",
-          Room: "Sala",
-          Next: "Próximo",
-          Username: "Nome de usuário",
-          LoginTip: "Digite o nome da sala e seu usuário para continuar",
-          LogIn: "Entrar",
-          Cancel: "Cancelar"
-        }
-      },
-      "EN": {
-        "login": {
-          Title: "Title",
-          Room: "Room",
-          Next: "Next",
-          Username: "Username",
-          LoginTip: "Enter the room and user name to hop in",
-          LogIn: "LogIn",
-          Cancel: "Cancel",
-        }
-      },
-      "ES": {
-        "login": {
-          Title: "Titulo",
-          Room: "Sala",
-          Next: "Próximo",
-          Username: "Nombre",
-          LoginTip: "Escriba la sala y el nombre de usuario para ingresar",
-          LogIn: "Iniciar",
-          Cancel: "Cancelar",
-        }
-      }
-    }
+    this._languagesDictionary = languagesDictionary;
   }
 
   getLanguages(): string[] {
