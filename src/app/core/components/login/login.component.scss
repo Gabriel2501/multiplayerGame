@@ -4,9 +4,15 @@
 @import "src/app/core/scss/fonts.scss";
 @import "src/app/core/scss/colors.scss";
 
-.container {
+.wrapper {
     height: 100%;
+    box-sizing: border-box;
     background-color: map.get($background-colors, "elevation-00dp");
+
+}
+
+.container {
+    height: calc(100% - 60px);
 }
 
 .login-card {
