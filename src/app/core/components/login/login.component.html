@@ -30,15 +30,15 @@
                     [disabled]="getFormControlNameIsValid('room')" matRipple>{{selectedDictionary['Next']}}</button>
             </form>
         </div>
-        <div class="row login-card-content" *ngIf="getFormControlValue('step') === 1 && !isLoading">
+        <div class="column login-card-content" *ngIf="getFormControlValue('step') === 1">
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
+                <div class="column flex__start-vertical-align login-card-content-input__wrapper">
                 <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
                     <input type="text" [placeholder]="selectedDictionary['Username']" formControlName="username">
                 </div>
-                <span *ngIf="form.get('username')?.invalid"> {{getFormErrorMessage("username")}}</span>
-
-                <button class="rectangular-button login-card-content__button"
-                    [disabled]="getFormControlNameIsValid('username')" matRipple>{{selectedDictionary['Next']}}</button>
+                    <span class="login-card-content__input-error" *ngIf="form.get('username')?.getError('notAllowed')">
+                        {{getFormErrorMessage("username")}}</span>
+                </div>
 
             </form>
         </div>
