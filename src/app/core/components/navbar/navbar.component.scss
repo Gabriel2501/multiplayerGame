@@ -1,0 +1,29 @@
+@use "sass:map";
+
+@import "src/app/core/scss/grid.scss";
+@import "src/app/core/scss/fonts.scss";
+@import "src/app/core/scss/colors.scss";
+
+.container {
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.navbar-unset__color {
+    @include setElementColor($background-color: unset);
+}
+
+.flex__start-area,
+.center-area,
+.flex__end-area {
+    width: calc(100% / 3);
+}
+
+
+@include grid("large-handset") {}
+@include grid("large-tablet") {}
+@include grid("desktop") {
+    // .container{
+    //     padding: 0 32px;
+    // }
+}

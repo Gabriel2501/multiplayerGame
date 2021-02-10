@@ -1,0 +1,16 @@
+<div class="row container" [ngClass]="getNavbarColorClass()">
+    <div class="flex__start-area"></div>
+    <div class="center-area"></div>
+    <div class="flex__end-area">
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon svgIcon="translate-white"></mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngFor="let language of languages" (click)="onSelectLanguage(language)">
+                    <span>{{language}}</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</div>

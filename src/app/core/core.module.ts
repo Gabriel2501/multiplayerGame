@@ -4,9 +4,10 @@ import { LoginComponent } from './components/login/login.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, NavbarComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,
@@ -14,6 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  exports: [LoginComponent]
+  exports: [NavbarComponent]
 })
 export class CoreModule { }
