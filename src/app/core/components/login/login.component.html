@@ -27,7 +27,7 @@
                     <input type="text" [placeholder]="selectedDictionary['Room']" formControlName="room">
                 </div>
                 <!-- </div> -->
-                <button class="rectangular-button login-card-content__button"
+                <button class="rectangular-button login-card-content__button login-card-content__next-button"
                     [disabled]="this.form.get('room')?.invalid" matRipple>{{selectedDictionary['Next']}}</button>
 
             </form>
@@ -41,7 +41,9 @@
                     <span class="login-card-content__input-error" *ngIf="form.get('username')?.getError('notAllowed')">
                         {{getFormErrorMessage("username")}}</span>
                 </div>
-                <button class="rectangular-button login-card-content__button" [disabled]="this.form.invalid"
+                <button class="rectangular-button login-card-content__button login-card-content__back-button"
+                    matRipple (click)="onGoBack()">{{selectedDictionary['Next']}}</button>
+                <button class="rectangular-button login-card-content__button login-card-content__next-button" [disabled]="this.form.invalid"
                     matRipple>{{selectedDictionary['Next']}}</button>
 
             </form>

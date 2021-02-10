@@ -69,7 +69,14 @@
             cursor: pointer;
 
             @include setElementColor($background-color: unset);
+        }
+
+        .login-card-content__next-button {
             @include setFont($family: "regular", $color: $primary-color);
+        }
+
+        .login-card-content__back-button {
+            @include setFont($family: "regular", $color: $default-color);
         }
 
         .login-card-content__button:hover {
