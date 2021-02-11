@@ -1,7 +1,7 @@
-<div *ngIf="log$ | async as logList">
-    <mat-list #logList>
+<div *ngIf="log$ | async">
+    <mat-list>
         <mat-list-item *ngFor="let log of logList">
-            {{log}}
+            {{ log }}
         </mat-list-item>
     </mat-list>
 </div>

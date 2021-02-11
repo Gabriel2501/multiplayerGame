@@ -1,26 +1,53 @@
+import { LanguageService } from 'src/app/core/services/language.service';
 import { SocketioService } from './../../services/socketio.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-game-log',
   templateUrl: './game-log.component.html',
   styleUrls: ['./game-log.component.scss']
 })
-export class GameLogComponent implements OnInit {
+export class GameLogComponent implements OnInit, OnDestroy {
 
-  log$!: Observable<any[]>;
+  log$!: Observable<any>;
+  logObjectList: {}[];
+  logList: any[];
   adminView$!: Observable<boolean>;
   isAdmin!: boolean;
 
-  constructor(private _socketioService: SocketioService) {
+  private _languageNotifierSubscription!: Subscription;
+  selectedDictionary!: { [key: string]: any };
+
+  constructor(
+    private _socketioService: SocketioService,
+    private _languageService: LanguageService) {
     this.isAdmin = false;
+    this.logList = [];
+    this.logObjectList = [];
   }
 
   ngOnInit(): void {
+    this._languageNotifierSubscription = this._languageService.getLanguageNotifier().subscribe(() => {
+      this.selectedDictionary = this._languageService.getDictionary("game-log");
+      this.updateLogList();
+    });
+
     this.log$ = this._socketioService.getLog();
+    this.log$.subscribe(data => {
+      this.logObjectList = [];
+      data.forEach((value: any) => {
+        this.logObjectList.push({ username: value.username, logKey: value.logKey });
+      });
+      this.updateLogList();
+    });
+
     this.adminView$ = this._socketioService.isAdmin();
     this.adminView$.subscribe((value) => this.isAdmin = value);
+  }
+
+  ngOnDestroy() {
+    this._languageNotifierSubscription.unsubscribe();
   }
 
   startGame(): void {
@@ -30,6 +57,14 @@ export class GameLogComponent implements OnInit {
 
   sair(): void {
     this._socketioService.emitEvent('user_logout', {});
+  }
+
+  updateLogList() {
+    this.logList = [];
+    console.log(this.logObjectList);
+    this.logObjectList?.forEach((value: any) => {
+      this.logList.push(value?.username + this.selectedDictionary[value?.logKey]);
+    });
   }
 
 }

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // private _snackBar: MatSnackBar,
     private _authenticationService: AuthenticationService,
     private _socketioService: SocketioService,
-    public languageService: LanguageService
+    private _languageService: LanguageService
   ) { }
 
   form = this._formBuilder.group({
@@ -98,12 +98,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSelectLanguage(language: string): void {
-    this.languageService.updateLanguage(language)
+    this._languageService.updateLanguage(language)
   }
 
   ngOnInit(): void {
-    this._languageNotifierSubscription = this.languageService.getLanguageNotifier().subscribe(() => {
-      this.selectedDictionary = this.languageService.getDictionary("login");
+    this._languageNotifierSubscription = this._languageService.getLanguageNotifier().subscribe(() => {
+      this.selectedDictionary = this._languageService.getDictionary("login");
     });
 
     this._title.setTitle("Multiplayer Game - Login");
