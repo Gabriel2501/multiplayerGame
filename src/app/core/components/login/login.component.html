@@ -21,7 +21,7 @@
 
                 </form>
             </div>
-            <div class="column login-card-content" *ngIf="getFormControlValue('step') === 1">
+            <div class="column center-vertical-align login-card-content" *ngIf="getFormControlValue('step') === 1"
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
                     <div class="column flex__start-vertical-align login-card-content-input__wrapper">
                         <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
@@ -32,12 +32,13 @@
                             *ngIf="form.get('username')?.getError('notAllowed')">
                             {{getFormErrorMessage("username")}}</span>
                     </div>
+                </form>
+                <div class="row">
                     <button class="rectangular-button login-card-content__button login-card-content__back-button"
                         matRipple (click)="onGoBack()">{{selectedDictionary['Back']}}</button>
                     <button class="rectangular-button login-card-content__button login-card-content__next-button"
-                        [disabled]="this.form.invalid" matRipple>{{selectedDictionary['Join']}}</button>
-
-                </form>
+                        [disabled]="this.form.invalid" matRipple (click)="onSubmit()">{{selectedDictionary['Join']}}</button>
+                </div>
             </div>
         </div>
         <ng-template #loadingCard>
