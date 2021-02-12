@@ -1,12 +1,16 @@
 <div class="row container" [ngClass]="getNavbarColorClass()">
-    <div class="flex__start-area"></div>
-    <div class="center-area"></div>
-    <div class="flex__end-area">
+    <div class="row flex__start-horizontal-align center-vertical-align flex__start-area">
+        <span class="flex__start-area__title">Multiplayer Game</span>
+    </div>
+    <div class="row center-horizontal-align center-vertical-align center-area">
+        <!-- <span class="flex__start-area__title"></span> -->
+    </div>
+    <div class="row flex__end-horizontal-align center-vertical-align flex__end-area">
         <div>
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon svgIcon="translate-white"></mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" class="custom">
                 <button mat-menu-item *ngFor="let language of languages" (click)="onSelectLanguage(language)">
                     <span>{{language}}</span>
                 </button>

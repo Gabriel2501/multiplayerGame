@@ -13,17 +13,38 @@
     @include setElementColor($background-color: unset);
 }
 
+.navbar-unset__color:hover {
+    @include setElementColor($background-color: map.get($background-colors, "elevation-02dp"));
+    transition: 500ms ease-in-out;
+}
+
 .flex__start-area,
 .center-area,
 .flex__end-area {
     width: calc(100% / 3);
+
+    .flex__start-area__title {
+        @include setFont($family: "bold");
+    }
 }
 
+.mat-icon:hover {
+    ::ng-deep svg {
+        fill: $primary-color !important;
+        transition: 300ms ease-in-out;
+    }
+}
 
-@include grid("large-handset") {}
-@include grid("large-tablet") {}
+@include grid("large-handset") {
+}
+@include grid("large-tablet") {
+}
 @include grid("desktop") {
-    // .container{
-    //     padding: 0 32px;
-    // }
+    .flex__start-area,
+    .center-area,
+    .flex__end-area {
+        .flex__start-area__title {
+            @include setFont($size: 1.3rem);
+        }
+    }
 }

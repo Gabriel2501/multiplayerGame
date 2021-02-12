@@ -33,6 +33,8 @@ $dark-theme: mat-light-theme(
     font-display: swap;
 }
 
+@import "src/app/core/scss/grid.scss";
+@import "src/app/core/scss/colors.scss";
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
@@ -53,7 +55,9 @@ body {
     // border-style: solid;
 }
 
-@import "src/app/core/scss/grid.scss";
+.mat-menu-panel.custom {
+    background-color: map.get($background-colors, "elevation-02dp");
+}
 
 @include grid("large-handset") {
     .container {
