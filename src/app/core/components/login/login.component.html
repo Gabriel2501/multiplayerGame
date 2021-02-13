@@ -25,8 +25,8 @@
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
                     <div class="column flex__start-vertical-align login-card-content-input__wrapper">
                         <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
-                            <input type="text" [placeholder]="selectedDictionary['Username']"
-                                formControlName="username">
+                            <input type="text" [placeholder]="selectedDictionary['Username']" formControlName="username"
+                                autofocus>
                         </div>
                         <span class="login-card-content__input-error"
                             *ngIf="form.get('username')?.getError('notAllowed')">
