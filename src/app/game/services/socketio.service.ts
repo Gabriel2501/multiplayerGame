@@ -1,7 +1,7 @@
-import { LanguageService } from 'src/app/core/services/language.service';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { io } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class SocketioService {
   }
 
   setupSocketConnection(room: string, username: string) {
-    this.socket = io("http://localhost:8080");
+    this.socket = io(environment.SOCKET_ENDPOINT);
     this._room = room;
     this._myUsername = username;
 
@@ -83,26 +83,53 @@ export class SocketioService {
   -----------------------------------------------------------------------
   */
 
+  /**
+   * 
+   * @param data - Objeto no formato '{users: IUser[], admin: IUser}'
+   * 
+   * users - representa a lista de usuários
+   * 
+   * admin - representa o usuário que é administrador da sala
+   */
   onUpdateUsers(data: any) {
     this.users$.next(data.users);
     this.isAdminUser$.next(data.admin.name === this._myUsername);
   }
 
+  /**
+   * 
+   * @param data - oBjeto no formato '{user: string, text: string}'
+   * 
+   * user - representa o nome de usuário
+   * 
+   * text - representa a mensagem recebida
+   */
   onMessageReceived(data: any) {
     this.messageList.push({ user: data.user, text: data.text });
 
-    //Quantidade de mensagens mostradas, mudar para arquivo de constantes
     if (this.messageList.length > 4) {
       this.messageList.shift();
     }
     this.messages$.next(this.messageList);
   }
 
+  /**
+   * 
+   * @param data - Objeto no formato '{username: string, logKey: string}'
+   * 
+   * username - nome de usuário
+   * 
+   * logKey - chave da string contida no arquivo de idiomas
+   */
   onLogReceived(data: any) {
     this.logList.push({ username: data?.username, logKey: data?.logKey });
     this.log$.next(this.logList);
   }
 
+  /**
+   * 
+   * @param username - string representando nome de usuário
+   */
   onDisconnected(username: string) {
     if (this._myUsername === username) {
       window.location.reload();
