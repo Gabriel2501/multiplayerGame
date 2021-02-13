@@ -61,7 +61,6 @@ export class GameLogComponent implements OnInit, OnDestroy {
 
   updateLogList() {
     this.logList = [];
-    console.log(this.logObjectList);
     this.logObjectList?.forEach((value: any) => {
       this.logList.push(value?.username + this.selectedDictionary[value?.logKey]);
     });
