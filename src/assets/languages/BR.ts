@@ -9,6 +9,8 @@ const BRLanguage = {
         LogIn: "Entrar",
         LoginTip: "Digite o nome da sala e seu usuário para continuar",
         Next: "Próximo",
+        NotAllowed: "Não foi possível realizar conexão com as informações inseridas.",
+        RequiredInput: "Este campo é de preenchimento obrigatório.",
         Room: "Sala",
         Title: "Título",
         Username: "Nome de usuário"

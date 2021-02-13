@@ -9,6 +9,8 @@ let ESLanguage = {
         LogIn: "Iniciar",
         LoginTip: "Escriba la sala y el nombre de usuario para ingresar",
         Next: "Próximo",
+        NotAllowed: "Não foi possível realizar conexão com as informações inseridas.",
+        RequiredInput: "Este campo é de preenchimento obrigatório.",
         Room: "Sala",
         Title: "Titulo",
         Username: "Nombre"

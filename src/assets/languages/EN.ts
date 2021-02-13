@@ -9,6 +9,8 @@ let ENLanguage = {
         LogIn: "LogIn",
         LoginTip: "Enter the room and user name to hop in",
         Next: "Next",
+        NotAllowed: "Not able to connect with the provided information.",
+        RequiredInput: "This field is required.",
         Room: "Room",
         Title: "Title",
         Username: "Username"

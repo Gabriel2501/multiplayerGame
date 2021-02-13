@@ -9,6 +9,8 @@ let ExampleLanguage = {
         LogIn: "text",
         LoginTip: "text",
         Next: "text",
+        NotAllowed: "text",
+        RequiredInput: "text",
         Room: "text",
         Title: "text",
         Username: "text"
