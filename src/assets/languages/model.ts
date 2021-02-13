@@ -15,7 +15,8 @@ let ExampleLanguage = {
     },
     "game-log": {
         JoinRoom: "text",
-        LeaveRoom: "text"
+        LeaveRoom: "text",
+        NewAdmin: "text"
     }
 };
 

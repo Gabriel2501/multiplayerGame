@@ -15,7 +15,8 @@ let ENLanguage = {
     },
     "game-log": {
         JoinRoom: " joined the room.",
-        LeaveRoom: " left the room."
+        LeaveRoom: " left the room.",
+        NewAdmin: " has become admin."
     }
 };
 

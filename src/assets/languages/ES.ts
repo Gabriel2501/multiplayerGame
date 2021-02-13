@@ -15,7 +15,8 @@ let ESLanguage = {
     },
     "game-log": {
         JoinRoom: " entrou na sala.",
-        LeaveRoom: "saiu de la sala."
+        LeaveRoom: " saiu de la sala.",
+        NewAdmin: " virou admin."
     }
 };
 

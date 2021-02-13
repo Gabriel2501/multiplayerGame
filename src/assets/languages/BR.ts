@@ -15,7 +15,8 @@ const BRLanguage = {
     },
     "game-log": {
         JoinRoom: " entrou na sala.",
-        LeaveRoom: " saiu da sala."
+        LeaveRoom: " saiu da sala.",
+        NewAdmin: " tornou-se administrador."
     }
 };
 
