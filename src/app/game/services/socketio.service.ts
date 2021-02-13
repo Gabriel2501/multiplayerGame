@@ -33,15 +33,16 @@ export class SocketioService {
 
   setupSocketConnection(room: string, username: string) {
     this.socket = io("http://localhost:8080");
-    this.socket.emit('new_user', room, username);
     this._room = room;
     this._myUsername = username;
+
+    this.emitEvent('new_user', { username: username });
 
     //Declaração dos métodos que o servidor pode invocar
     this.socket.on('update_users', (data: any) => this.onUpdateUsers(data));
     this.socket.on('message', (data: any) => this.onMessageReceived(data));
     this.socket.on('log_event', (data: any) => this.onLogReceived(data));
-    this.socket.on('force_disconnect', (username: string) => this.onDisconnected(username));
+    this.socket.on('force_disconnect', (user: string) => this.onDisconnected(user));
   }
 
   /**
