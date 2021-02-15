@@ -24,7 +24,7 @@
     width: calc(100% / 3);
 
     .flex__start-area__title {
-        @include setFont($family: "bold");
+        @include setFont($family: "bold", $color:$default-color);
     }
 }
 
