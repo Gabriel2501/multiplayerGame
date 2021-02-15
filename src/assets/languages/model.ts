@@ -9,13 +9,16 @@ let ExampleLanguage = {
         LogIn: "text",
         LoginTip: "text",
         Next: "text",
+        NotAllowed: "text",
+        RequiredInput: "text",
         Room: "text",
         Title: "text",
         Username: "text"
     },
     "game-log": {
         JoinRoom: "text",
-        LeaveRoom: "text"
+        LeaveRoom: "text",
+        NewAdmin: "text"
     }
 };
 

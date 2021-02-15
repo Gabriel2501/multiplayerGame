@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   getFormErrorMessage(formName: string): string | void {
     // Mudar texto para arquivo de constantes de idioma 
-    if (this.form.get(formName)?.getError('notAllowed')) return 'Não foi possível realizar conexão com as informações inseridas.';
-    else if (this.form.get(formName)?.getError('required')) return 'Este campo é de preenchimento obrigatório!';
+    if (this.form.get(formName)?.getError('notAllowed')) return this.selectedDictionary['NotAllowed'];
+    else if (this.form.get(formName)?.getError('required')) return this.selectedDictionary['RequiredInput'];
   }
 
   onClearForm(): void {

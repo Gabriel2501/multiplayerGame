@@ -1,8 +1,6 @@
 <div class="wrapper">
     <app-navbar [color]="'unset'"></app-navbar>
     <div class="column center-horizontal-align center-vertical-align container">
-        <!-- Botão para troca de idioma -->
-
         <!-- Início do card de login -->
         <div class="column no-wrap card login-card" *ngIf="!isLoading; else loadingCard">
             <div class="column center-vertical-align login-card-header">
@@ -21,23 +19,25 @@
 
                 </form>
             </div>
-            <div class="column center-vertical-align login-card-content" *ngIf="getFormControlValue('step') === 1"
+            <div class="column center-vertical-align login-card-content" *ngIf="getFormControlValue('step') === 1">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
                     <div class="column flex__start-vertical-align login-card-content-input__wrapper">
                         <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
-                            <input type="text" [placeholder]="selectedDictionary['Username']"
-                                formControlName="username">
+                            <input type="text" [placeholder]="selectedDictionary['Username']" formControlName="username"
+                                autofocus>
                         </div>
                         <span class="login-card-content__input-error"
                             *ngIf="form.get('username')?.getError('notAllowed')">
-                            {{getFormErrorMessage("username")}}</span>
+                            {{getFormErrorMessage("username")}}
+                        </span>
                     </div>
                 </form>
                 <div class="row">
                     <button class="rectangular-button login-card-content__button login-card-content__back-button"
                         matRipple (click)="onGoBack()">{{selectedDictionary['Back']}}</button>
                     <button class="rectangular-button login-card-content__button login-card-content__next-button"
-                        [disabled]="this.form.invalid" matRipple (click)="onSubmit()">{{selectedDictionary['Join']}}</button>
+                        [disabled]="this.form.invalid" matRipple (click)="onSubmit()">{{selectedDictionary['Join']}}
+                    </button>
                 </div>
             </div>
         </div>
