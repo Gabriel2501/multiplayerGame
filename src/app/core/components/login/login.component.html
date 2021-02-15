@@ -4,7 +4,7 @@
         <!-- Botão para troca de idioma -->
 
         <!-- Início do card de login -->
-        <div class="column card login-card" *ngIf="!isLoading; else loadingCard">
+        <div class="column no-wrap card login-card" *ngIf="!isLoading; else loadingCard">
             <div class="column center-vertical-align login-card-header">
                 <span class="login-card-header__title"> {{selectedDictionary['Title']}}</span>
                 <span class="login-card-header__subtitle"> {{selectedDictionary['LoginTip']}} </span>
