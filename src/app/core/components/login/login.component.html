@@ -2,52 +2,62 @@
     <app-navbar [color]="'unset'"></app-navbar>
     <div class="column center-horizontal-align center-vertical-align container">
         <!-- Início do card de login -->
-        <div class="column no-wrap card login-card" *ngIf="!isLoading; else loadingCard">
+        <div class="column no-wrap card login-card">
             <div class="column center-vertical-align login-card-header">
                 <span class="login-card-header__title"> {{selectedDictionary['Title']}}</span>
                 <span class="login-card-header__subtitle"> {{selectedDictionary['LoginTip']}} </span>
             </div>
-            <div class="column login-card-content" *ngIf="getFormControlValue('step') === 0">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
-                    <!-- <div class="column flex__start-vertical-align login-card-content-input__wrapper"> -->
-                    <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('room')">
-                        <input type="text" [placeholder]="selectedDictionary['Room']" formControlName="room">
-                    </div>
-                    <!-- </div> -->
-                    <button class="rectangular-button login-card-content__button login-card-content__next-button"
-                        [disabled]="this.form.get('room')?.invalid" matRipple>{{selectedDictionary['Next']}}</button>
-
-                </form>
-            </div>
-            <div class="column center-vertical-align login-card-content" *ngIf="getFormControlValue('step') === 1">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row center-horizontal-align login-card-content">
-                    <div class="column flex__start-vertical-align login-card-content-input__wrapper">
-                        <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('username')">
-                            <input type="text" [placeholder]="selectedDictionary['Username']" formControlName="username"
-                                autofocus>
+            <div class="column login-card-content">
+                <mat-tab-group dynamicHeight="true" (animationDone)="onSelectedTabChange()"
+                    [selectedIndex]="form.get('step')?.value" class="invisible-tabs" mat-align-tabs="end">
+                    <mat-tab>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                            class="row center-horizontal-align login-card-content">
+                            <div class="login-card-content__input" [ngClass]="getFormControlNameIsValid('room')">
+                                <input type="text" [placeholder]="selectedDictionary['Room']" formControlName="room"
+                                    #roomInput>
+                            </div>
+                            <button
+                                class="rectangular-button login-card-content__button login-card-content__next-button"
+                                [disabled]="this.form.get('room')?.invalid" matRipple>{{selectedDictionary['Next']}}
+                            </button>
+                        </form>
+                    </mat-tab>
+                    <mat-tab>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                            class="row center-horizontal-align login-card-content">
+                            <div class="column flex__start-vertical-align login-card-content-input__wrapper">
+                                <div class="login-card-content__input"
+                                    [ngClass]="getFormControlNameIsValid('username')">
+                                    <input type="text" [placeholder]="selectedDictionary['Username']"
+                                        formControlName="username" #usernameInput>
+                                </div>
+                                <span class="login-card-content__input-error"
+                                    *ngIf="form.get('username')?.getError('notAllowed')">
+                                    {{getFormErrorMessage("username")}}
+                                </span>
+                            </div>
+                        </form>
+                        <div class="row center-horizontal-align">
+                            <button
+                                class="rectangular-button login-card-content__button login-card-content__back-button"
+                                matRipple (click)="onGoBack()">{{selectedDictionary['Back']}}
+                            </button>
+                            <button
+                                class="rectangular-button login-card-content__button login-card-content__next-button"
+                                [disabled]="this.form.invalid" matRipple
+                                (click)="onSubmit()">{{selectedDictionary['Join']}}
+                            </button>
                         </div>
-                        <span class="login-card-content__input-error"
-                            *ngIf="form.get('username')?.getError('notAllowed')">
-                            {{getFormErrorMessage("username")}}
-                        </span>
-                    </div>
-                </form>
-                <div class="row">
-                    <button class="rectangular-button login-card-content__button login-card-content__back-button"
-                        matRipple (click)="onGoBack()">{{selectedDictionary['Back']}}</button>
-                    <button class="rectangular-button login-card-content__button login-card-content__next-button"
-                        [disabled]="this.form.invalid" matRipple (click)="onSubmit()">{{selectedDictionary['Join']}}
-                    </button>
-                </div>
+                    </mat-tab>
+                    <mat-tab>
+                        <div class="column center-vertical-align center-horizontal-align login-card-content__loading">
+                            <mat-spinner diameter="50"></mat-spinner>
+                            <span>{{selectedDictionary['Connecting']}}</span>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
         </div>
-        <ng-template #loadingCard>
-            <div class="column loading-card">
-                <div class="column center-horizontal-align center-vertical-align loading-card-content">
-                    <mat-spinner></mat-spinner>
-                    <span>{{selectedDictionary['Connecting']}}</span>
-                </div>
-            </div>
-        </ng-template>
     </div>
 </div>

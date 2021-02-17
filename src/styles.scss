@@ -60,6 +60,12 @@ body {
     background-color: map.get($background-colors, "elevation-02dp");
 }
 
+.invisible-tabs {
+    > .mat-tab-header {
+        display: none;
+    }
+}
+
 @include grid("large-handset") {
     .container {
     }

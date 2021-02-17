@@ -8,7 +8,6 @@
     height: 100%;
     box-sizing: border-box;
     background-color: map.get($background-colors, "elevation-00dp");
-
 }
 
 .container {
@@ -103,6 +102,12 @@
             @include setElementColor($background-color: unset, $border-color: #616161);
             @include setFont($family: "light", $color: #616161);
         }
+
+        .login-card-content__loading {
+            span {
+                @include setFont($family: "bold", $color: $default-color);
+            }
+        }
     }
 
     .login-card-content__loading {
@@ -121,9 +126,6 @@
 
 .loading-card {
     .loading-card-content {
-        span {
-            @include setFont($family: "bold", $color: $default-color);
-        }
     }
 }
 
@@ -215,19 +217,12 @@
                 margin: 24px 0 0 0;
                 padding: 8px 24px;
             }
-        }
-    }
 
-    .loading-card,
-    .loading-card-content {
-        width: 100%;
-    }
-
-    .loading-card {
-        .loading-card-content {
-            span {
-                @include setFont($size: 1.2rem);
-                padding-top: 16px;
+            .login-card-content__loading {
+                span {
+                    @include setFont($size: 1.2rem);
+                    padding-top: 16px;
+                }
             }
         }
     }

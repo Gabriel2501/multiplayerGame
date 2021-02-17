@@ -1,31 +1,32 @@
 import { LanguageService } from 'src/app/core/services/language.service';
 import { SocketioService } from './../../../game/services/socketio.service';
-import { Route } from '@angular/compiler/src/core';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
+
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-// import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+
+export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('roomInput') roomInput!: ElementRef;
+  @ViewChild('usernameInput') usernameInput!: ElementRef;
 
   private _userVeryfiedSubscription!: Subscription;
-
   private _languageNotifierSubscription!: Subscription;
+
   selectedDictionary!: { [key: string]: any };
 
   constructor(
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _title: Title,
-    // private _snackBar: MatSnackBar,
     private _authenticationService: AuthenticationService,
     private _socketioService: SocketioService,
     private _languageService: LanguageService
@@ -72,12 +73,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     const step: number = this.form.get("step")?.value;
     switch (step) {
       case 0:
-        this.form.get("room")?.valid ? this._setStepValue() : undefined;
+        if (this.form.get("room")?.valid) {
+          this.usernameInput.nativeElement.focus();
+          console.log("Oi")
+          this._setStepValue();
+        }
         break;
-
       case 1:
         if (this.form.valid) {
-          this.isLoading = true;
+          this.form.get("step")?.patchValue(2);
           this._userVeryfiedSubscription = this._authenticationService.verifyUser(this.form.value).subscribe((value: boolean) => {
             if (value) {
               this._socketioService.setupSocketConnection(this.form.get("room")?.value, this.form.get("username")?.value);
@@ -86,13 +90,23 @@ export class LoginComponent implements OnInit, OnDestroy {
             else {
               this.form.get("username")?.patchValue(undefined);
               this.form.get("username")?.setErrors({ 'notAllowed': true });
-              this.isLoading = !this.isLoading;
+              this.form.get("step")?.patchValue(1);
             }
           });
         }
         break;
-
       default:
+        break;
+    }
+  }
+
+  onSelectedTabChange(): void {
+    switch (this.form.get('step')?.value) {
+      case 0:
+        this.roomInput.nativeElement.focus();
+        break;
+      case 1:
+        this.usernameInput.nativeElement.focus();
         break;
     }
   }
@@ -108,6 +122,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this._title.setTitle("Multiplayer Game - Login");
     this.form.get("step")?.disable();
+  }
+
+  ngAfterViewInit(): void {
+    this.roomInput.nativeElement.focus();
   }
 
   ngOnDestroy(): void {
