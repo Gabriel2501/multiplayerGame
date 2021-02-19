@@ -6,7 +6,7 @@
         </div>
         <div *ngFor="let button of getNavbarAreaButtons(area.align)">
             <div *ngIf="!button.hasMatMenu; else buttonMatMenu">
-                <button>
+                <button (click)="onClick(button.id)">
                     <mat-icon *ngIf="button.hasIcon; else buttonWithoutIcon" [svgIcon]="button.svgIconName ||''">
                     </mat-icon>
                     <ng-template #buttonWithoutIcon>
