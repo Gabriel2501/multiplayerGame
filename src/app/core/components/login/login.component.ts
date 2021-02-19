@@ -113,13 +113,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  // onSelectLanguage(language: string): void {
-  //   this._languageService.updateLanguage(language)
-  // }
-
   onGetClickedButtonName(event: any): void {
-    console.log(event)
-    switch(event.action){
+    switch (event.action) {
       case 'translate':
         this._languageService.updateLanguage(event.data);
         break;
