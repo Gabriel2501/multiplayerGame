@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <app-navbar [color]="'unset'"></app-navbar>
+    <app-navbar [config]="navbarConfig" (clickedButtonName)="onGetClickedButtonName($event)"></app-navbar>
     <div class="column center-horizontal-align center-vertical-align container">
         <!-- Início do card de login -->
         <div class="column no-wrap card login-card">

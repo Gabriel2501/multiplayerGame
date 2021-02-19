@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { NavbarConfig } from '../../interfaces/navbar-config';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
   selectedDictionary!: { [key: string]: any };
 
+  navbarConfig!: NavbarConfig;
+
   constructor(
     private _formBuilder: FormBuilder,
     private _router: Router,
@@ -38,7 +41,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     step: [0, []]
   });
 
-  isLoading: boolean = false;
 
   private _setStepValue(increment: boolean = true): void {
     let stepValue: number = this.form.get("step")?.value;
@@ -111,8 +113,17 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  onSelectLanguage(language: string): void {
-    this._languageService.updateLanguage(language)
+  // onSelectLanguage(language: string): void {
+  //   this._languageService.updateLanguage(language)
+  // }
+
+  onGetClickedButtonName(event: any): void {
+    console.log(event)
+    switch(event.action){
+      case 'translate':
+        this._languageService.updateLanguage(event.data);
+        break;
+    }
   }
 
   ngOnInit(): void {
@@ -122,6 +133,18 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this._title.setTitle("Multiplayer Game - Login");
     this.form.get("step")?.disable();
+
+    this.navbarConfig = {
+      title: { name: "Multiplayer Game", align: "flexStart" },
+      color: "transparent",
+      buttons: [
+        {
+          id: "translate", hasIcon: true, svgIconName: "translate-white", align: "flexEnd", hasMatMenu: true, matMenuOptions: {
+            values: this._languageService.getLanguages()
+          }
+        }
+      ]
+    };
   }
 
   ngAfterViewInit(): void {
