@@ -37,6 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private _languageService: LanguageService,
   ) {
     this._iconRegistry.addSvgIcon('translate-white', this._domSanitizer.bypassSecurityTrustResourceUrl(`${environment.ICON_PATH}translate-white-24dp.svg`));
+    this._iconRegistry.addSvgIcon('help_center-white', this._domSanitizer.bypassSecurityTrustResourceUrl(`${environment.ICON_PATH}help_center-white-24dp.svg`));
   }
 
   private _setupNavbarButtons() {
@@ -81,7 +82,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClick(name: string, data: any): void {
+  onClick(name: string, data?: any): void {
     this.clickedButtonName.emit({ action: name, data: data });
   }
 
