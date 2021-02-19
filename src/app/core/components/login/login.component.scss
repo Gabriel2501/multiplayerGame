@@ -4,12 +4,6 @@
 @import "src/app/core/scss/fonts.scss";
 @import "src/app/core/scss/colors.scss";
 
-.wrapper {
-    height: 100%;
-    box-sizing: border-box;
-    background-color: map.get($background-colors, "elevation-00dp");
-}
-
 .container {
     height: calc(100% - 60px);
 }
@@ -54,6 +48,11 @@
             input:focus {
                 outline: none;
             }
+        }
+
+        .login-card-content__input:focus {
+            @include setElementColor($border-color: $default-color);
+            transition: 200ms ease-in-out;
         }
 
         .login-card-content__input-invalid {
@@ -191,6 +190,7 @@
 
         .login-card-content {
             padding-top: 24px;
+            height: auto;
 
             .login-card-content__input {
                 padding: 12px 16px;
@@ -204,10 +204,6 @@
             .login-card-content__input-error {
                 padding-top: 12px;
                 padding-left: 8px;
-            }
-
-            .login-card-content-input__wrapper {
-                // height: 80px;
             }
 
             .login-card-content__button {

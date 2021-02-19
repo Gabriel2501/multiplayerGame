@@ -5,7 +5,7 @@
 $dark-primary: mat-palette($mat-blue-grey);
 $dark-accent: mat-palette($mat-amber, A200, A100, A400);
 $dark-warn: mat-palette($mat-deep-orange);
-$dark-theme: mat-light-theme(
+$dark-theme: mat-dark-theme(
     (
         color: (
             primary: $dark-primary,
@@ -43,15 +43,22 @@ body {
 }
 body {
     margin: 0;
+    color: white;
 }
 
-.card{
+.wrapper {
+    height: 100%;
+    box-sizing: border-box;
+    background-color: map.get($background-colors, "elevation-00dp");
+}
+
+.card {
     border-radius: 12px;
 }
 
 .rectangular-button {
     border-radius: 6px;
-    border-style: none
+    border-style: none;
     // border-width: 2px;
     // border-style: solid;
 }

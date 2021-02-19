@@ -1,0 +1,11 @@
+@use "sass:map";
+
+@import "src/app/core/scss/grid.scss";
+@import "src/app/core/scss/fonts.scss";
+@import "src/app/core/scss/colors.scss";
+
+// .container {
+//     height: 100%;
+//     background-color: map.get($background-colors, "elevation-00dp");
+
+// }
