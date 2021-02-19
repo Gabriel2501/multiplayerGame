@@ -1,29 +1,27 @@
-<mat-grid-list cols="6" rowHeight="4:1">
+<div class="wrapper">
+    <app-navbar [config]="navbarConfig" (clickedButtonName)="onGetClickedButtonName($event)"></app-navbar>
+    <div class="container">
+        <mat-grid-list cols="6" rowHeight="4:1">
+            <!-- Lateral Esquerda  Superior-->
+            <mat-grid-tile rowspan="5" colspan="1">
+                <app-user-list></app-user-list>
+            </mat-grid-tile>
 
-    <!-- Menu Superior -->
-    <mat-grid-tile colspan="6">
-        <app-menu style="width:100%;"></app-menu>
-    </mat-grid-tile>
-    <mat-divider></mat-divider>
+            <!-- Tela principal -->
+            <mat-grid-tile rowspan="10" colspan="4">
+                Jogo vai aqui
+            </mat-grid-tile>
 
-    <!-- Lateral Esquerda  Superior-->
-    <mat-grid-tile rowspan="5" colspan="1">
-        <app-user-list></app-user-list>
-    </mat-grid-tile>
+            <!-- Lateral Direita -->
+            <mat-grid-tile rowspan="10" colspan="1">
+                <app-game-log></app-game-log>
+            </mat-grid-tile>
 
-    <!-- Tela principal -->
-    <mat-grid-tile rowspan="10" colspan="4">
-        Jogo vai aqui
-    </mat-grid-tile>
+            <!-- Lateral Esquerda  Inferior-->
+            <mat-grid-tile rowspan="5" colspan="1">
+                <app-chat></app-chat>
+            </mat-grid-tile>
 
-    <!-- Lateral Direita -->
-    <mat-grid-tile rowspan="10" colspan="1">
-        <app-game-log></app-game-log>
-    </mat-grid-tile>
-
-    <!-- Lateral Esquerda  Inferior-->
-    <mat-grid-tile rowspan="5" colspan="1">
-        <app-chat></app-chat>
-    </mat-grid-tile>
-
-</mat-grid-list>
+        </mat-grid-list>
+    </div>
+</div>

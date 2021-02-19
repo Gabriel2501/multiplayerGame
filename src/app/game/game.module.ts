@@ -9,6 +9,7 @@ import { AngularMaterialModule } from './../angular-material/angular-material.mo
 import { MenuComponent } from './menu/menu.component';
 import { AjudaComponent } from './menu/ajuda/ajuda.component';
 import { SocketioService } from './services/socketio.service';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SocketioService } from './services/socketio.service';
   imports: [
     CommonModule,
     GameRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    CoreModule
   ]
 })
 export class GameModule { }
