@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarConfig } from 'src/app/core/interfaces/navbar-config';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { LanguageService } from 'src/app/core/services/language.service';
 
 import { SocketioService } from './../../services/socketio.service';
@@ -12,8 +13,15 @@ import { SocketioService } from './../../services/socketio.service';
 export class GameComponent implements OnInit {
 
   navbarConfig!: NavbarConfig;
+  room!: string;
+  username!: string;
 
-  constructor(private _languageService: LanguageService) { }
+
+  constructor(
+    private _dialog: MatDialog,
+    private _languageService: LanguageService,
+    private _authenticationService: AuthenticationService
+  ) { }
 
   onGetClickedButtonName(event: any): void {
     switch (event.action) {
@@ -27,6 +35,9 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.username = this._authenticationService.getUsername();
+    this.room = this._authenticationService.getRoom();
+
     this.navbarConfig = {
       title: { name: "Multiplayer Game", align: "flexStart" },
       color: "transparent",

@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 export class AuthenticationService {
 
   private _userIsAuthenticated: boolean = false;
+  private _username!: string;
+  private _room!: string;
 
   constructor(
     private _httpClient: HttpClient
@@ -23,6 +25,9 @@ export class AuthenticationService {
       map((data: any) => {
         if (!data.find(((user: any) => user.name === obj?.username))) {
           this._userIsAuthenticated = true;
+          this.setUsername(obj?.username);
+          this.setRoom(obj?.room);
+
           return true;
         } else return false;
       }),
@@ -32,5 +37,21 @@ export class AuthenticationService {
 
   userIsAuthenticated(): boolean {
     return this._userIsAuthenticated;
+  }
+
+  getUsername(): string {
+    return this._username;
+  }
+
+  getRoom(): string {
+    return this._room;
+  }
+
+  setUsername(value: string): void {
+    this._username = value;
+  }
+
+  setRoom(value: string): void {
+    this._room = value;
   }
 }
