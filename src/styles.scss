@@ -73,6 +73,21 @@ body {
     }
 }
 
+.custom-mat-dialog-container .mat-dialog-container {
+    background-color: map.get($background-colors, "bg-03");
+    box-shadow: unset;
+    padding: 0;
+}
+
+.custom-mat-dialog-padding .mat-dialog-container {
+    padding: 0;
+}
+
+.custom-mat-dialog-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
 @include grid("large-handset") {
     .container {
     }

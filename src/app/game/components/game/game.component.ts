@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NavbarConfig } from 'src/app/core/interfaces/navbar-config';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { LanguageService } from 'src/app/core/services/language.service';
+import { HelpComponent } from '../help/help.component';
 
-import { SocketioService } from './../../services/socketio.service';
 
 @Component({
   selector: 'app-game',
@@ -15,6 +16,14 @@ export class GameComponent implements OnInit {
   navbarConfig!: NavbarConfig;
   room!: string;
   username!: string;
+
+  private _matDialogConfig: MatDialogConfig = {
+    // disableClose: true,
+    panelClass: ['custom-mat-dialog-container'],
+    backdropClass: "custom-mat-dialog-backdrop",
+    width: undefined,
+    maxWidth: "none"
+  };
 
 
   constructor(
@@ -29,7 +38,7 @@ export class GameComponent implements OnInit {
         this._languageService.updateLanguage(event.data);
         break;
       case 'help':
-        console.log(event)
+        this._dialog.open(HelpComponent, this._matDialogConfig);
         break;
     }
   }
@@ -39,7 +48,8 @@ export class GameComponent implements OnInit {
     this.room = this._authenticationService.getRoom();
 
     this.navbarConfig = {
-      title: { name: "Multiplayer Game", align: "flexStart" },
+      title: { name: "Multiplayer Game", align: "center" },
+      subtitle: { name: this.room, align: "center", color: "" },
       color: "transparent",
       buttons: [
         {
