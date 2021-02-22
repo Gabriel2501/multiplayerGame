@@ -1,18 +1,20 @@
 <div class="row container" [ngClass]="getNavbarColorClass()">
     <div class="row center-vertical-align" *ngFor="let area of navbarAreas"
         [ngClass]="getNavbarAreaAlignment(area.cssClass)">
-        <div class="row" *ngIf="getNavbarTitleAlignment(area.align, config.title.align)">
+        <div class="column center-vertical-align" *ngIf="getNavbarTitleAlignment(area.align, config.title.align)">
             <span class="flex__start-area__title">Multiplayer Game</span>
+            <span *ngIf="config.subtitle">{{config.subtitle?.name}}</span>
         </div>
         <div *ngFor="let button of getNavbarAreaButtons(area.align)">
             <div *ngIf="!button.hasMatMenu; else buttonMatMenu">
-                <button (click)="onClick(button.id)">
-                    <mat-icon *ngIf="button.hasIcon; else buttonWithoutIcon" [svgIcon]="button.svgIconName ||''">
-                    </mat-icon>
-                    <ng-template #buttonWithoutIcon>
-                        <span>{{button.name}}</span>
-                    </ng-template>
-                </button>
+                <button mat-button *ngIf="!button.hasIcon; else buttonIcon"
+                    (click)="onClick(button.id)">{{button.name}}</button>
+                <ng-template #buttonIcon>
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                        (click)="onClick(button.id)">
+                        <mat-icon [svgIcon]="button.svgIconName ||''"></mat-icon>
+                    </button>
+                </ng-template>
             </div>
             <ng-template #buttonMatMenu>
                 <div>
