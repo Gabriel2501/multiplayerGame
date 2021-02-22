@@ -6,19 +6,16 @@ import { GameLogComponent } from './components/game-log/game-log.component';
 import { GameComponent } from './components/game/game.component';
 import { GameRoutingModule } from './game-routing.module';
 import { AngularMaterialModule } from './../angular-material/angular-material.module';
-import { MenuComponent } from './menu/menu.component';
-import { AjudaComponent } from './menu/ajuda/ajuda.component';
-import { SocketioService } from './services/socketio.service';
 import { CoreModule } from '../core/core.module';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
   declarations: [
-    ChatComponent, 
-    UserListComponent, 
-    GameLogComponent, 
-    GameComponent, 
-    MenuComponent, 
-    AjudaComponent 
+    ChatComponent,
+    UserListComponent,
+    GameLogComponent,
+    GameComponent,
+    HelpComponent
   ],
   imports: [
     CommonModule,
