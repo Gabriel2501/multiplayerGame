@@ -1,6 +1,8 @@
-import { SocketioService } from './../../services/socketio.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+
+// import { Observable } from 'rxjs';
+// import { SocketioService } from './../../services/socketio.service';
+
 
 @Component({
   selector: 'app-chat',
@@ -8,16 +10,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  messages$!: Observable<any[]>;
+  // messages$!: Observable<any[]>;
 
-  constructor(private _socketioService: SocketioService) {
+  constructor(
+    // private _socketioService: SocketioService
+  ) {
   }
 
   ngOnInit(): void {
-    this.messages$ = this._socketioService.getMessages();
+    // this.messages$ = this._socketioService.getMessages();
   }
 
-  enviarMensagem(texto: any): void {
-    this._socketioService.emitEvent('message', { text: texto.value });
-  }
+  // enviarMensagem(texto: any): void {
+  //   this._socketioService.emitEvent('message', { text: texto.value });
+  // }
 }

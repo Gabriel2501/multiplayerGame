@@ -1,7 +1,8 @@
-import { Subject, Observable } from 'rxjs';
-import { SocketioService } from './../../services/socketio.service';
-import { GameComponent } from './../game/game.component';
 import { Component, OnInit } from '@angular/core';
+
+// import { Subject, Observable } from 'rxjs';
+// import { SocketioService } from './../../services/socketio.service';
+// import { GameComponent } from './../game/game.component';
 
 @Component({
   selector: 'app-user-list',
@@ -9,22 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users$!: Observable<any[]>;
-  adminView$!: Observable<boolean>;
-  isAdmin!: boolean;
+  // users$!: Observable<any[]>;
+  // adminView$!: Observable<boolean>;
+  // isAdmin!: boolean;
 
-  constructor(private _socketioService: SocketioService) {
-    this.isAdmin = false;
+  constructor(
+    // private _socketioService: SocketioService
+  ) {
+    // this.isAdmin = false;
   }
 
   ngOnInit(): void {
-    this.users$ = this._socketioService.getUsers();
+    // this.users$ = this._socketioService.getUsers();
 
-    this.adminView$ = this._socketioService.isAdmin();
-    this.adminView$.subscribe((value) => this.isAdmin = value);
+    // this.adminView$ = this._socketioService.isAdmin();
+    // this.adminView$.subscribe((value) => this.isAdmin = value);
   }
 
-  deleteUser(username: string): void {
-    this._socketioService.emitEvent("delete_user", { username: username });
-  }
+  // deleteUser(username: string): void {
+  //   this._socketioService.emitEvent("delete_user", { username: username });
+  // }
 }
