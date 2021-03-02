@@ -9,6 +9,7 @@ import { LogComponent } from './components/log/log.component';
   declarations: [ChatComponent, LogComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [ChatComponent, LogComponent]
 })
 export class UtilsModule { }
