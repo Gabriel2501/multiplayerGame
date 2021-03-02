@@ -8,6 +8,7 @@ import { GameRoutingModule } from './game-routing.module';
 import { AngularMaterialModule } from './../angular-material/angular-material.module';
 import { CoreModule } from '../core/core.module';
 // import { HelpComponent } from './components/help/help.component';
+import { ContainerComponent } from './components/container/container.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CoreModule } from '../core/core.module';
     // GameLogComponent,
     // GameComponent,
     // HelpComponent,
+    ContainerComponent
   ],
   imports: [
     CommonModule,
