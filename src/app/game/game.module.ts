@@ -9,6 +9,7 @@ import { AngularMaterialModule } from './../angular-material/angular-material.mo
 import { CoreModule } from '../core/core.module';
 // import { HelpComponent } from './components/help/help.component';
 import { ContainerComponent } from './components/container/container.component';
+import { UtilsModule } from '../utils/utils.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ContainerComponent } from './components/container/container.component';
     CommonModule,
     GameRoutingModule,
     AngularMaterialModule,
-    CoreModule
+    CoreModule,
+    UtilsModule
   ]
 })
 export class GameModule { }
